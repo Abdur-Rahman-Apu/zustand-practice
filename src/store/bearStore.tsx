@@ -8,9 +8,10 @@ type IBearStore = {
 
   incrementSmallBear: () => void;
   incrementBigBear: () => void;
+  summary: () => string;
 };
 
-export const useBearStore = create<IBearStore>()((set) => ({
+export const useBearStore = create<IBearStore>()((set, get) => ({
   bears: {
     small: 0,
     big: 0,
@@ -21,4 +22,10 @@ export const useBearStore = create<IBearStore>()((set) => ({
     set((state) => ({
       bears: { ...state.bears, small: state.bears.small + 1 },
     })),
+  summary: () => {
+    const smallBears = get().bears.small;
+    const bigBears = get().bears.big;
+    const total = smallBears + bigBears;
+    return `There are total ${total} bears`;
+  },
 }));

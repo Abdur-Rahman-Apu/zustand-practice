@@ -2,6 +2,7 @@ import { useBearStore } from "../../store/bearStore";
 
 export default function Bear() {
   const bears = useBearStore((state) => state.bears);
+  const summary = useBearStore((state) => state.summary);
   const incrementSmallBear = useBearStore((state) => state.incrementSmallBear);
   const incrementBigBear = useBearStore((state) => state.incrementBigBear);
   return (
@@ -11,6 +12,7 @@ export default function Bear() {
       <div>
         <p>Big: {bears.big}</p>
         <p>Small: {bears.small}</p>
+        <p>{summary()}</p>
       </div>
 
       <div>
