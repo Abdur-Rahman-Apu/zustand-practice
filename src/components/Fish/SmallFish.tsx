@@ -1,13 +1,20 @@
+import { useShallow } from "zustand/shallow";
 import { useFishStore } from "../../store/fishStore";
 
 const SmallFish = () => {
-  const smallFish = useFishStore.use.count().small;
-  const incrementSmallFish = useFishStore.use.incrementSmallFish();
+  const store = useFishStore(
+    useShallow((state) => {
+      return {
+        smallFish: state.count.small,
+        incrementSmallFish: state.incrementSmallFish,
+      };
+    })
+  );
   return (
     <div>
-      <p>Small Fish: {smallFish}</p>
+      <p>Small Fish: {store.smallFish}</p>
       <p>{Math.random()}</p>
-      <button onClick={incrementSmallFish}>Add Small Fish</button>
+      <button onClick={store.incrementSmallFish}>Add Small Fish</button>
     </div>
   );
 };

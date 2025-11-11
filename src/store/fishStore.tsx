@@ -8,23 +8,21 @@ type IFishStore = {
   incrementBigFish: () => void;
 };
 
-export const useFishStore = createSelectors(
-  create<IFishStore>()(
-    immer((set) => {
-      return {
-        count: {
-          small: 0,
-          big: 0,
-        },
-        incrementSmallFish: () =>
-          set((state) => {
-            state.count.small++;
-          }),
-        incrementBigFish: () =>
-          set((state) => {
-            state.count.big++;
-          }),
-      };
-    })
-  )
+export const useFishStore = create<IFishStore>()(
+  immer((set) => {
+    return {
+      count: {
+        small: 0,
+        big: 0,
+      },
+      incrementSmallFish: () =>
+        set((state) => {
+          state.count.small++;
+        }),
+      incrementBigFish: () =>
+        set((state) => {
+          state.count.big++;
+        }),
+    };
+  })
 );

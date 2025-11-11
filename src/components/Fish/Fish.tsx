@@ -1,7 +1,7 @@
 import { useFishStore } from "../../store/fishStore";
 
 const Fish = () => {
-  const incrementSmallFish = useFishStore.use.incrementSmallFish();
+  const incrementSmallFish = useFishStore((state) => state.incrementSmallFish);
   return (
     <div>
       <p>Fish</p>
