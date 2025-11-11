@@ -1,12 +1,17 @@
 import "./App.css";
 import Bear from "./components/Bear/Bear";
+import BigFish from "./components/Fish/BigFish";
+import Fish from "./components/Fish/Fish";
+import SmallFish from "./components/Fish/SmallFish";
 
 function App() {
   return (
     <>
       <h1>ZUSTAND</h1>
 
-      <Bear />
+      <Fish />
+      <SmallFish />
+      <BigFish />
     </>
   );
 }
