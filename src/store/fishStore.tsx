@@ -1,6 +1,6 @@
 import { create } from "zustand";
+import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import { createSelectors } from "../utils/utils";
 
 type IFishStore = {
   count: { small: number; big: number };
@@ -9,20 +9,28 @@ type IFishStore = {
 };
 
 export const useFishStore = create<IFishStore>()(
-  immer((set) => {
-    return {
-      count: {
-        small: 0,
-        big: 0,
+  immer(
+    devtools(
+      (set) => {
+        return {
+          count: {
+            small: 0,
+            big: 0,
+          },
+          incrementSmallFish: () =>
+            set((state) => {
+              state.count.small++;
+            }),
+          incrementBigFish: () =>
+            set((state) => {
+              state.count.big++;
+            }),
+        };
       },
-      incrementSmallFish: () =>
-        set((state) => {
-          state.count.small++;
-        }),
-      incrementBigFish: () =>
-        set((state) => {
-          state.count.big++;
-        }),
-    };
-  })
+      {
+        enabled: true,
+        name: "fish Store",
+      }
+    )
+  )
 );
