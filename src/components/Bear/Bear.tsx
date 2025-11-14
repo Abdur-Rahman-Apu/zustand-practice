@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useBearStore } from "../../store/bearStore";
 import { useFoodStore } from "../../store/foodStore";
+import { shallow } from "zustand/shallow";
 
 export default function Bear() {
   const bears = useBearStore((state) => state.bears);
@@ -11,14 +12,16 @@ export default function Bear() {
   const [bgColor,setBgColor]=useState<'lightPink'|'lightGreen'>('lightPink')
 
   useEffect(()=>{
-    const unsub=useFoodStore.subscribe((state,prevState)=>{
-      console.log(state,prevState);
-
-      if(state.fish>5){
+    const unsub=useFoodStore.subscribe(state=>state.fish,(fish,prevFish)=>{
+    
+      if(fish>5){
         setBgColor('lightGreen')
-      }else if(state.fish<=5){
+      }else if(fish<=5){
         setBgColor('lightPink')
       }
+    },{
+      equalityFn:shallow,
+      fireImmediately:true
     })
 
     return unsub;
