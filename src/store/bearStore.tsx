@@ -12,17 +12,22 @@ type IBearStore = {
   summary: () => string;
 };
 
-const createBearSlice:StateCreator<IBearStore,[["zustand/immer", never]]> = (set, get) => ({
+const createBearSlice: StateCreator<IBearStore, [["zustand/immer", never]]> = (
+  set,
+  get
+) => ({
   bears: {
     small: 0,
     big: 0,
   },
-  incrementBigBear: () => set((state) => {
-    state.bears.big++;
-  }),
-  incrementSmallBear: () => set((state) => {
-    state.bears.small++;
-  }),
+  incrementBigBear: () =>
+    set((state) => {
+      state.bears.big++;
+    }),
+  incrementSmallBear: () =>
+    set((state) => {
+      state.bears.small++;
+    }),
   summary: () => {
     const smallBears = get().bears.small;
     const bigBears = get().bears.big;
@@ -31,7 +36,4 @@ const createBearSlice:StateCreator<IBearStore,[["zustand/immer", never]]> = (set
   },
 });
 
-
-export const useBearStore = create<IBearStore>()(
-  immer(createBearSlice)
-);
+export const useBearStore = create<IBearStore>()(immer(createBearSlice));
