@@ -1,16 +1,17 @@
 import "./App.css";
-import BigFish from "./components/Fish/BigFish";
-import Fish from "./components/Fish/Fish";
-import SmallFish from "./components/Fish/SmallFish";
+import Bear from "./components/Bear/Bear";
+import FoodBox from "./components/Food/FoodBox";
 
 function App() {
   return (
     <>
       <h1>ZUSTAND</h1>
+      <div style={{display: "flex" , gap: "50px", justifyContent: "center", alignItems: "center"}}>
+    
+        <Bear />
 
-      <Fish />
-      <SmallFish />
-      <BigFish />
+        <FoodBox />
+      </div>
     </>
   );
 }
