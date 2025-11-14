@@ -1,10 +1,8 @@
-import { useFoodStore } from '../../store/foodStore'
+import { addOneFish, removeAllFish, removeOneFish, useFoodStore } from '../../store/foodStore'
 
 const FoodBox = () => {
     const fish=useFoodStore((state)=>state.fish)
-    const addOneFish=useFoodStore((state)=>state.addOneFish)
-    const removeOneFish=useFoodStore((state)=>state.removeOneFish)
-    const removeAllFish=useFoodStore((state)=>state.removeAllFish)
+
 
     const addFiveFish=()=>{
         useFoodStore.setState((state)=>({fish:state.fish+5}))
